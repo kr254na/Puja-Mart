@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@theme {
+  --font-cinzel: 'Cinzel Decorative', serif;
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-sanskrit: 'Tiro Devanagari Sanskrit', serif;
+  
+  --color-saffron: #FF6B1A;
+  --color-saffron-deep: #E8530A;
+  --color-gold: #D4A017;
+  --color-gold-bright: #FFD700;
+  --color-maroon: #8B0000;
+  --color-maroon-dark: #3D0000;
+  --color-cream: #FFF8E7;
+  --color-parchment: #F5E6C8;
+  --color-dark-bg: #1A0800;
+  --color-mid-bg: #2D0F00;
+  --color-lotus-pink: #E8739C;
+
+  --breakpoint-xs: 320px; 
+}
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: #1A0800; /* Dark background */
+  color: #FFF8E7; /* Light cream text */
+  overflow-x: hidden;
+}
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1A0800;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4A017;
+  border-radius: 3px;
+}
+.gold-particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-particle linear infinite;
+}
+.animate-fade-in {
+  animation: fadeIn 1s ease-out;
+}
+.shimmer-text {
+  background-size: 200% auto;
+  animation: shimmer-gold 4s linear infinite;
+}
+.animate-marquee {
+  animation: marquee-scroll 30s linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes float-particle {
+  0% { transform: translateY(100vh) rotate(0deg) scale(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-10vh) rotate(720deg) scale(1.5); opacity: 0; }
+}
+@keyframes spin-chakra {
+0% { transform: rotate(0deg) }
+100% { transform: rotate(360deg) }
+}
+@keyframes shimmer-gold {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
