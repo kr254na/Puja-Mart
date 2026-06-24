@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageSquare, Upload, FileText, X, Send, Check } from 'lucide-react';
 
 export default function WhatsappCommerce({triggerToast}) {
@@ -47,40 +47,35 @@ export default function WhatsappCommerce({triggerToast}) {
     }
   };
 
-  // Submit list query via WhatsApp
-  const handleSubmitList = () => {
-    if (!uploadedFile) return;
-
-    // Simulate saving file details into localStorage so Admin dashboard can read it
-    const listRequests = JSON.parse(localStorage.getItem('apb_puja_lists') || '[]');
-    const newRequest = {
-      id: `REQ-${Math.floor(1000 + Math.random() * 9000)}`,
-      date: new Date().toLocaleDateString('en-US'),
-      fileName: uploadedFile.name,
-      fileSize: `${(uploadedFile.size / 1024).toFixed(1)} KB`,
-      status: 'Pending Review'
-    };
-    localStorage.setItem('apb_puja_lists', JSON.stringify([newRequest, ...listRequests]));
-
-    // Generate WhatsApp text redirecting
-    const text = `Pranam Agarwal Pujan Bhandar, I have uploaded my handwritten Puja List (${uploadedFile.name}) to your website. Please check your admin dashboard, bundle the items, and send me a price quote.`;
-    
-    setUploadedFile(null);
-    setFilePreview(null);
-    setIsOpen(false);
-    alert("List uploaded successfully! Generating your WhatsApp chat...");
-    window.open(`https://wa.me/919554054732?text=${encodeURIComponent(text)}`, '_blank');
-  };
+ const handleSubmitList = () => {
+  if (!uploadedFile) return;
+  const text = `Radhe Radhe\nI have uploaded my handwritten Puja List (${uploadedFile.name}) to your website. Please check it and send me a price quote.`;
+  setUploadedFile(null);
+  setFilePreview(null);
+  setIsOpen(false);
+  window.open(
+    `https://wa.me/919554054732?text=${encodeURIComponent(text)}`,
+    "_blank"
+  );
+};
 
   // Send textual general query via WhatsApp
   const handleSendTextQuery = () => {
     if (textQuery.trim() === '') return;
-    const text = `Pranam Agarwal Pujan Bhandar,\nI have a general enquiry: ${textQuery}`;
+    const text = `Radhe Radhe,\nI have a general enquiry: ${textQuery}`;
     setTextQuery('');
     setIsOpen(false);
     window.open(`https://wa.me/919554054732?text=${encodeURIComponent(text)}`, '_blank');
   };
 
+  useEffect(() => {
+    return () => {
+      if (filePreview) {
+        URL.revokeObjectURL(filePreview);
+      }
+    };
+  }, [filePreview]);
+  
   return (
     <>
       {/* FLOATING ACTION TRIGGER */}
@@ -96,7 +91,7 @@ export default function WhatsappCommerce({triggerToast}) {
 
       {/* CHAT POPUP WIDGET */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-40 w-full max-w-[350px]
+        <div className="fixed bottom-24 right-6 z-40 w-full max-w-[270px]
         sm:max-w-md border border-gold/30 rounded-lg shadow-2xl p-5 md:p-6 flex flex-col
         justify-between bg-dark-bg text-cream">
           
@@ -195,7 +190,10 @@ export default function WhatsappCommerce({triggerToast}) {
               {uploadedFile && (
                 <button
                   onClick={handleSubmitList}
-                  className="w-full mt-3 py-2 bg-gradient-to-r from-[#25D366] to-[#20ba5a] text-white font-cormorant font-semibold text-xs md:text-sm rounded flex items-center justify-center gap-2 cursor-pointer shadow transition hover:opacity-90"
+                  className="w-full mt-3 py-2 bg-gradient-to-r from-[#25D366] to-[#20ba5a]
+                  text-white font-cormorant font-semibold text-xs md:text-sm rounded
+                  flex items-center justify-center gap-2 cursor-pointer shadow transition
+                  hover:opacity-90"
                 >
                   <Check className="w-4 h-4" />
                   <span>Submit List & Chat</span>
@@ -211,11 +209,13 @@ export default function WhatsappCommerce({triggerToast}) {
                   rows={2}
                   value={textQuery}
                   onChange={(e) => setTextQuery(e.target.value)}
-                  className="bg-transparent border-none outline-none text-xs md:text-sm w-full font-cormorant focus:ring-0 resize-none text-cream placeholder-cream/30"
+                  className="bg-transparent border-none outline-none text-xs md:text-sm
+                  w-full font-cormorant focus:ring-0 resize-none text-cream placeholder-cream/30"
                 />
                 <button
                   onClick={handleSendTextQuery}
-                  className="p-2 ml-1 bg-gradient-to-r from-saffron to-saffron-deep rounded hover:opacity-90 text-white cursor-pointer"
+                  className="p-2 ml-1 bg-gradient-to-r from-saffron to-saffron-deep rounded
+                  hover:opacity-90 text-white cursor-pointer"
                 >
                   <Send className="w-3.5 h-3.5" />
                 </button>

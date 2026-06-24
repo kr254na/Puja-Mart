@@ -18,6 +18,37 @@
 
   --breakpoint-xs: 320px; 
 }
+@layer components{
+  .section-header-wrap {
+    @apply text-center max-w-2xl mx-auto mb-12;
+  }
+
+  /* Section Header Subtitle */
+  .section-header-tag {
+    @apply font-cinzel text-xs tracking-[6px] text-gold uppercase block mb-3;
+  }
+
+  /* Section Header Main Title */
+  .section-header-title {
+    @apply font-cinzel text-2xl md:text-4xl font-bold bg-gradient-to-r 
+           from-gold-bright to-cream bg-clip-text text-transparent mb-4;
+  }
+
+  /* Glassmorphism Card */
+  .card-glass-premium {
+    @apply group relative border border-gold/15 bg-white/5 rounded-sm p-6 
+           cursor-pointer hover:border-gold/40 hover:-translate-y-1.5 
+           transition duration-300 flex flex-col justify-between;
+  }
+
+  /* View All Button*/
+  .btn-gold-outline {
+    @apply inline-flex items-center gap-2 px-6 py-2.5 border border-gold/40 
+           rounded-full text-xs font-cinzel text-gold hover:bg-gold/10 
+           hover:text-gold-bright hover:border-gold transition duration-300 
+           cursor-pointer shadow-lg;
+  }
+}
 body {
   font-family: 'Cormorant Garamond', Georgia, serif;
   background: #1A0800; /* Dark background */
@@ -41,12 +72,12 @@ body {
   opacity: 0;
   animation: float-particle linear infinite;
 }
-.animate-fade-in {
-  animation: fadeIn 1s ease-out;
-}
 .shimmer-text {
   background-size: 200% auto;
   animation: shimmer-gold 4s linear infinite;
+}
+.animate-fade-in {
+  animation: fadeIn 1s ease-out;
 }
 .animate-marquee {
   animation: marquee-scroll 30s linear infinite;

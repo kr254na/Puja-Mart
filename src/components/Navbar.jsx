@@ -95,7 +95,8 @@ export default function Navbar(){
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 h-[88px] flex items-center justify-around md:justify-between px-4 sm:px-12 border-b border-gold/30 bg-dark-bg/90 backdrop-blur-md text-cream">
+      <nav className="fixed top-0 left-0 right-0 z-50 h-[88px] flex items-center justify-around
+      md:justify-between px-4 sm:px-12 border-b border-gold/30 bg-dark-bg/90 backdrop-blur-md text-cream">
         
         {/* Brand */}
         <div 
