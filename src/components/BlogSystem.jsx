@@ -9,7 +9,7 @@ export default function BlogSystem({ isHomePage = false }) {
   const displayedBlogs = isHomePage ? defaultBlogs.slice(0, 6) : defaultBlogs;
 
   return (
-    <section id="blogs-section" className="py-16 px-4 md:px-12 bg-dark-bg text-cream">
+    <section id="blogs-section" className="py-12 px-4 md:px-12 bg-dark-bg text-cream">
       
       {/* Header */}
       <div className="section-header-wrap">
@@ -27,9 +27,7 @@ export default function BlogSystem({ isHomePage = false }) {
           <div
             key={blog.id}
             onClick={() => setReadingBlog(blog)}
-            className="group relative border border-gold/15 bg-white/5 rounded-sm p-6 cursor-pointer
-            hover:border-gold/40 hover:-translate-y-1.5 transition duration-300 flex flex-col justify-between"
-          >
+            className="card-glass-premium">
             <div>
               {/* Blog meta details */}
               <div className="flex gap-4 items-center text-[10px] text-gold uppercase font-mono mb-4 border-b border-gold/10 pb-3">
