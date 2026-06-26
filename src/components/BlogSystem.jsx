@@ -19,6 +19,9 @@ export default function BlogSystem({ isHomePage = false }) {
         <h2 className="section-header-title shimmer-text">
           {isHomePage ? "Spiritual Guides" : "The Complete Vedic Library"}
         </h2>
+        <p className='section-header-description'>
+          Deepen your practice with insights on rituals, deities, and Vedic philosophy, shared by our expert pandits.
+        </p>
       </div>
 
       {/* Blogs Grid */}

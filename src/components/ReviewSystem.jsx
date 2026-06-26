@@ -28,6 +28,9 @@ export default function ReviewSystem({ isHomePage = false }) {
         <h2 className="section-header-title">
           {isHomePage ? "Words of Trust" : "The Devotee Ledger"}
         </h2>
+        <p className='section-header-description'>
+          Read inspiring stories from devotees whose lives have been touched by our sacred offerings.
+        </p>
       </div>
 
       {/* Reviews Layout Grid with optimized lower heights */}
