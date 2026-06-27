@@ -1,6 +1,7 @@
 import { categories } from '../data/categoriesData'; 
 import CategoryCard from './CategoryCard';
-
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 export default function Categories() {
   const displayedCategories = categories.slice(0, 6);
 
@@ -25,6 +26,14 @@ export default function Categories() {
             isWide={idx === 0 || idx === 5}
           />
         ))}
+      </div>
+
+      {/* View All Button */}
+      <div className="text-center mt-12">
+          <Link to="/collections" className="btn-gold-outline group">
+            View all Collections
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
       </div>
 
     </section>

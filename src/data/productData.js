@@ -1,42 +1,41 @@
 export const dummyProducts = [
   {
-    id: "p1",
-    name: "Premium Brass Puja Thali Set",
-    desc: "Handcrafted engraved brass thali with diya, roli chawal katori, and bell.",
-    cat: "Puja Utensils",
-    price: 1250,
-    emoji: "🪔"
+    id: "prod-bhimseni-kapoor",
+    nameEn: "Premium Bhimseni Camphor",
+    nameHi: "शुद्ध भीमसेनी कपूर",
+    unit: "100g Pack",
+    category: "daily",
+    image: "https://images.unsplash.com/photo-1631552598858-52f20cb45761?auto=format&fit=crop&q=80&w=500",
+    description: "100% pure, additive-free natural camphor flakes that leave zero residue upon burning."
   },
   {
-    id: "p2",
-    name: "Natural Sandalwood Incense Sticks",
-    desc: "Organic chandan dhoop batti for a calming spiritual environment.",
-    cat: "Incense & Dhoop",
-    price: 180,
-    emoji: "🪵"
+    id: "prod-mysore-chandan",
+    nameEn: "Pure Sandalwood Paste",
+    nameHi: "मैसूर चंदन पेस्ट",
+    price: 240,
+    unit: "50g Jar",
+    category: "daily",
+    image: "https://images.unsplash.com/photo-1609137144813-2dbe48d79972?auto=format&fit=crop&q=80&w=500",
+    description: "Authentic fragrant sandalwood paste prepared fresh for deity tilak and daily worship."
   },
   {
-    id: "p3",
-    name: "Pure Ashtadhatu Balaji Idol",
-    desc: "Exquisite multi-metal Lord Tirupati Balaji murti for home mandir.",
-    cat: "Idols & Murti",
-    price: 3500,
-    emoji: "🙏"
+    id: "prod-kesar-moli",
+    nameEn: "Premium Kesar Kalava",
+    nameHi: "शाही केसरिया रक्षासूत्र",
+    price: 60,
+    unit: "Bundle of 3",
+    category: "daily",
+    image: "https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?auto=format&fit=crop&q=80&w=500",
+    description: "Traditional hand-tied sacred thread infused with pure natural saffron extract dyes."
   },
   {
-    id: "p4",
-    name: "Complete Navratri Sringar Kit",
-    desc: "All essential items including chunri, kalash, and sringar material.",
-    cat: "Festive Combos",
-    price: 750,
-    emoji: "🌺"
-  },
-  {
-    id: "p5",
-    name: "Gangajal & Panchamrit Set",
-    desc: "Holy gangajal directly sourced with organic honey and mishri package.",
-    cat: "Puja Samagri",
-    price: 220,
-    emoji: "💧"
+    id: "prod-brass-diya",
+    nameEn: "Artisanal Mayur Brass Diya",
+    nameHi: "अखंड मयूर पीतल दीया",
+    price: 450,
+    unit: "1 Piece",
+    category: "brassware",
+    image: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=500",
+    description: "Heavy-cast traditional brass oil lamp featuring detailed twin peacock carvings."
   }
 ];

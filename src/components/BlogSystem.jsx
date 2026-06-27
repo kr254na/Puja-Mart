@@ -62,7 +62,7 @@ export default function BlogSystem({ isHomePage = false }) {
         <div className="text-center mt-12">
           <Link 
             to="/blogs" 
-            className="btn-gold-outline"
+            className="btn-gold-outline group"
           >
             Explore All Vedic Guides
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

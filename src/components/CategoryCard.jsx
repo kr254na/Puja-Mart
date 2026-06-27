@@ -5,7 +5,7 @@ export default function CategoryCard({ cat, isWide }) {
         transition-all duration-500 hover:scale-[1.01] hover:border-gold/50
         hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]
         bg-gradient-to-br from-white/[0.03] to-white/[0.01] border-gold/15
-        flex flex-col justify-between
+        flex flex-col justify-between backdrop-blur-md
         ${isWide ? 'md:col-span-2 min-h-[260px]' : 'md:col-span-1 min-h-[230px]'} h-full`}
       style={{
         backgroundColor: 'rgba(255, 255, 255, 0.02)'

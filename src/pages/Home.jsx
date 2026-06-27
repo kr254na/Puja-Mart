@@ -5,6 +5,8 @@ import MarqueeStrip from "../components/MarqueeStrip";
 import WhatsAppCommerce from "../components/WhatsAppCommerce";
 import ReviewSystem from "../components/ReviewSystem";
 import Collections from "../components/Collections";
+import Kits from "../components/Kits";
+import FeaturedProducts from "../components/FeaturedProducts";
 
 export default function Home({ triggerToast }) {
   const [particles, setParticles] = useState([]);
@@ -52,6 +54,8 @@ export default function Home({ triggerToast }) {
       <Hero />
       <MarqueeStrip />
     <Collections />
+    <Kits/>
+    <FeaturedProducts/>
       <BlogSystem isHomePage={true} />
       <ReviewSystem isHomePage={true} />
       <WhatsAppCommerce triggerToast={triggerToast} />

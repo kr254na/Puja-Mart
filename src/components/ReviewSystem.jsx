@@ -89,7 +89,7 @@ export default function ReviewSystem({ isHomePage = false }) {
       {/* View All Button */}
       {isHomePage && (
         <div className="text-center mt-12">
-          <Link to="/reviews" className="btn-gold-outline">
+          <Link to="/reviews" className="btn-gold-outline group">
             Read All Devotee Logs
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
