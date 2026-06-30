@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { defaultReviews } from '../data/reviewData';
 import { ArrowRight, Star, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -18,10 +18,22 @@ export default function ReviewSystem({ isHomePage = false }) {
   };
 
   return (
-    <section id="reviews-section" className="py-12 px-4 md:px-12 bg-dark-bg text-cream">
+    <section id="reviews-section" className="py-12 px-4 md:px-12 text-cream">
       
       {/* Header */}
-      <div className="section-header-wrap">
+      <div className="section-header-wrap relative">
+                  {/* Glow */}
+  <div
+    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+  >
+    <div
+      className="w-[700px] h-[300px]
+      rounded-full
+       bg-saffron/9
+      blur-[120px]"
+    />
+  </div>
+  <div className='relative z-10'>
         <span className="section-header-tag">
           ✦ DEVOTEE TESTIMONIALS ✦
         </span>
@@ -31,6 +43,7 @@ export default function ReviewSystem({ isHomePage = false }) {
         <p className='section-header-description'>
           Read inspiring stories from devotees whose lives have been touched by our sacred offerings.
         </p>
+        </div>
       </div>
 
       {/* Reviews Layout Grid with optimized lower heights */}

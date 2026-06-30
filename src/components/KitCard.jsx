@@ -73,9 +73,7 @@ export default function KitCard({ kit }) {
             onClick={(e) => {
               e.stopPropagation();
             }}
-            className="flex-1 py-2 px-3 rounded-xs border border-gold/20 bg-white/[0.02]
-            font-cinzel text-[10px] font-bold tracking-widest text-cream uppercase transition-all
-            duration-300 hover:bg-gold/10 flex items-center justify-center gap-1.5 cursor-pointer"
+            className="btn-store-secondary"
           >
             <Eye className="w-3.5 h-3.5" />
             View Details
@@ -84,12 +82,9 @@ export default function KitCard({ kit }) {
           {/* WhatsApp Order Action Button */}
           <button
             onClick={handleWhatsAppOrder}
-            className="flex-1 py-2 px-3 rounded-xs border border-gold/30 bg-gold/5
-            font-cinzel text-[10px] font-bold tracking-widest text-gold uppercase transition-all
-            duration-300 hover:bg-gold hover:text-dark-bg flex items-center justify-center gap-1.5
-            cursor-pointer shadow-sm group/btn"
+            className="btn-store-primary group"
           >
-            <ShoppingBag className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" />
+            <ShoppingBag className="w-3.5 h-3.5 group-hover:scale-110" />
             Order Kit
           </button>
 

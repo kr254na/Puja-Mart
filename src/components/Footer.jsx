@@ -6,6 +6,7 @@ import {
   HelpingHand
 } from 'lucide-react';
 import { useState } from 'react';
+import Logo from './Logo';
 
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -57,14 +58,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 ">
           
           {/* Column 1: Brand Info */}
-          <div className="xs:col-span-2 sm:col-span-1 lg:col-span-4 flex flex-col gap-4">
-            <div className="flex flex-col gap-1">
-              <h2 className="font-cinzel font-bold text-xl text-center md:text-2xl tracking-wider bg-gradient-to-r from-gold-bright via-saffron to-gold bg-clip-text text-transparent">
-                Agarwal Pujan Bhandar
-              </h2>
-              <p className="text-xs text-gold/80 font-sanskrit text-center tracking-widest">
-                All your religious needs at one reliable center.
-              </p>
+          <div className="xs:col-span-2 sm:col-span-1 lg:col-span-4 flex flex-col gap-4 items-center">
+            <div className="flex flex-col items-center gap-2">
+              <Logo className="h-16 w-16" />
+              <div className="flex flex-col gap-1 text-center">
+                <h2 className="font-cinzel font-bold text-xl md:text-2xl tracking-wider bg-gradient-to-r from-gold-bright via-saffron to-gold bg-clip-text text-transparent">
+                  Agarwal Pujan Bhandar
+                </h2>
+                <p className="text-xs text-gold/80 font-sanskrit tracking-widest">
+                  All your religious needs at one reliable center.
+                </p>
+              </div>
             </div>
             <p className="font-cormorant text-center text-sm text-cream/70 leading-relaxed ">
               Authentic puja samagri, deity garments, religious books and puja samagri available.
@@ -81,7 +85,7 @@ export default function Footer() {
           </div>
 
             {/* Newsletter */}
-            <div className="mt-4">
+            <div className="mt-4 w-full">
               <p className="text-xs text-center font-semibold text-gold-bright mb-2">
                 Get latest updates on festivals and new products
               </p>
@@ -114,35 +118,35 @@ border-b border-gold/10 pb-2 flex items-center md:justify-start gap-2">
 </h3>
   <ul className="flex flex-col gap-2 text-cream/70 font-cormorant text-sm">
     <li className="hover:text-gold-bright transition">
-      <Link to="/product?cat=puja-essentials">Puja Essentials</Link>
+      <Link to="/products?cat=puja-essentials">Puja Essentials</Link>
     </li>
 
     <li className="hover:text-gold-bright transition">
-      <Link to="/product?cat=deity-clothing">Deity Clothing</Link>
+      <Link to="/products?cat=deity-clothing">Deity Clothing</Link>
     </li>
 
     <li className="hover:text-gold-bright transition">
-      <Link to="/product?cat=sringar-accessories">Shringar & Accessories</Link>
+      <Link to="/products?cat=sringar-accessories">Shringar & Accessories</Link>
     </li>
 
     <li className="hover:text-gold-bright transition">
-      <Link to="/product?cat=tulsi-kanthi-malas">Tulsi Kanthi & Malas</Link>
+      <Link to="/products?cat=tulsi-kanthi-malas">Tulsi Kanthi & Malas</Link>
     </li>
 
     <li className="hover:text-gold-bright transition">
-      <Link to="/product?cat=brass-copperware">Brass & Copperware</Link>
+      <Link to="/products?cat=brass-copperware">Brass & Copperware</Link>
     </li>
 
     <li className="hover:text-gold-bright transition">
-      <Link to="/product?cat=spiritual-books">Spiritual Books</Link>
+      <Link to="/products?cat=spiritual-books">Spiritual Books</Link>
     </li>
 
     <li className="hover:text-gold-bright transition">
-      <Link to="/product?cat=hawan-yagna-supplies">Hawan & Yagna Supplies</Link>
+      <Link to="/products?cat=hawan-yagna-supplies">Hawan & Yagna Supplies</Link>
     </li>
 
     <li className="hover:text-gold-bright transition">
-      <Link to="/product?cat=wedding-puja-kits">Wedding Puja Kits</Link>
+      <Link to="/products?cat=wedding-puja-kits">Wedding Puja Kits</Link>
     </li>
   </ul>
 </div>

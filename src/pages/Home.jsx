@@ -7,6 +7,7 @@ import ReviewSystem from "../components/ReviewSystem";
 import Collections from "../components/Collections";
 import Kits from "../components/Kits";
 import FeaturedProducts from "../components/FeaturedProducts";
+import OnlineTemple from "../components/OnlineTemple";
 
 export default function Home({ triggerToast }) {
   const [particles, setParticles] = useState([]);
@@ -36,10 +37,9 @@ export default function Home({ triggerToast }) {
     }
     setParticles(list);
   }, []);
-
   return (
     <div className="relative">
-
+      
       <div className="fixed inset-0 pointer-events-none z-0">
         {particles.map(p => (
           <div 
@@ -51,8 +51,11 @@ export default function Home({ triggerToast }) {
       </div>
 
       {/* Main Home Sections */}
+
+
       <Hero />
       <MarqueeStrip />
+          <OnlineTemple/>
     <Collections />
     <Kits/>
     <FeaturedProducts/>

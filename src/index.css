@@ -17,7 +17,8 @@
   --color-mid-bg: #2D0F00;
   --color-lotus-pink: #E8739C;
 
-  --breakpoint-xs: 320px; 
+  --breakpoint-xs: 380px; 
+  --breakpoint-vsm: 480px;
 }
 @layer components{
   .section-header-wrap {
@@ -54,7 +55,33 @@
            hover:text-gold-bright hover:border-gold transition duration-300 
            cursor-pointer shadow-lg;
   }
+
+  /* Custom Button Architecture for the Divine Storefront */
+  .btn-store-secondary {
+    @apply w-full py-2 px-2 rounded-sm border border-gold/20 bg-white/[0.02] 
+           font-cinzel text-[10px] font-bold tracking-widest text-cream uppercase 
+           transition-all duration-300 hover:bg-gold/10 flex items-center 
+           justify-center gap-1.5 cursor-pointer;
+  }
+
+  .btn-store-primary {
+    @apply w-full py-2 px-2 rounded-sm border border-gold/30 bg-gold/5 
+           text-gold font-cinzel text-[10px] font-bold tracking-widest uppercase 
+           transition-all duration-300 hover:bg-gold hover:text-dark-bg 
+           flex items-center justify-center gap-1.5 cursor-pointer shadow-xs;
+  }
+
+  .btn-filled{
+    @apply inline-flex items-center gap-3 px-8 py-3.5 rounded-xs bg-gradient-to-r from-gold via-gold-bright to-[#B8860B] text-dark-bg font-cinzel text-xs font-black tracking-[2px] uppercase shadow-[0_10px_30px_rgba(212,175,55,0.2)] hover:shadow-[0_15px_40px_rgba(212,175,55,0.4)] hover:scale-[1.03] transition-all duration-500 cursor-pointer w-full sm:w-auto justify-center;
+  }
+
+  .badge{
+  @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30
+  bg-gold/5 text-gold-bright font-cinzel text-[11px] tracking-[4px] uppercase backdrop-blur-md;
+  }
+
 }
+
 body {
   font-family: 'Cormorant Garamond', Georgia, serif;
   background: #1A0800; /* Dark background */
@@ -87,6 +114,36 @@ body {
 }
 .animate-marquee {
   animation: marquee-scroll 30s linear infinite;
+}
+
+/* Custom Audio Engine Support System */
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFFDF4;
+  box-shadow: 0 0 8px #D4AF37;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+/* Custom layout scrollbars for lyric sheets */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 2px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.4);
 }
 
 @keyframes fadeIn {

@@ -9,10 +9,21 @@ export default function BlogSystem({ isHomePage = false }) {
   const displayedBlogs = isHomePage ? defaultBlogs.slice(0, 6) : defaultBlogs;
 
   return (
-    <section id="blogs-section" className="py-12 px-4 md:px-12 bg-dark-bg text-cream">
+    <section id="blogs-section" className="py-12 px-4 md:px-12 text-cream">
       
       {/* Header */}
-      <div className="section-header-wrap">
+      <div className="section-header-wrap relative">
+          <div
+    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+  >
+    <div
+      className="w-[700px] h-[300px]
+      rounded-full
+       bg-saffron/9
+      blur-[120px]"
+    />
+  </div>
+  <div className='relative z-10'>
         <span className="section-header-tag">
           ✦ VEDIC KNOWLEDGE PORTAL ✦
         </span>
@@ -22,6 +33,7 @@ export default function BlogSystem({ isHomePage = false }) {
         <p className='section-header-description'>
           Deepen your practice with insights on rituals, deities, and Vedic philosophy, shared by our expert pandits.
         </p>
+        </div>
       </div>
 
       {/* Blogs Grid */}

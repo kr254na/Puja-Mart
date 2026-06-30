@@ -6,15 +6,29 @@ export default function Categories() {
   const displayedCategories = categories.slice(0, 6);
 
   return (
-    <section id="categories-section" className="py-12 px-4 md:px-12 bg-dark-bg text-cream">
-      
+    <section id="categories-section" className="py-12 px-4 md:px-12 text-cream relative">
+
       {/* Header */}
-      <div className="section-header-wrap">
+      <div className="section-header-wrap relative">
+                  {/* Glow */}
+  <div
+    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+  >
+    <div
+      className="w-[700px] h-[300px]
+      rounded-full
+      bg-saffron/9
+      blur-[120px]"
+    />
+  </div>
+     {/* Content */}
+  <div className="relative z-10">
         <span className="section-header-tag">Our Divine Collections</span>
         <h2 className="section-header-title">Explore the Sacred Spectrum</h2>
         <p className="section-header-description">
           From the holiest puja kits to attire for the deities, every element is crafted with divine precision to enhance your spiritual practice.
         </p>
+  </div>
       </div>
 
       {/* Bento Grid layout */}
@@ -30,7 +44,7 @@ export default function Categories() {
 
       {/* View All Button */}
       <div className="text-center mt-12">
-          <Link to="/collections" className="btn-gold-outline group">
+          <Link to="/products" className="btn-gold-outline group">
             View all Collections
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>

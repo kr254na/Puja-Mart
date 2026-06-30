@@ -4,19 +4,35 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 export default function Kits() {
   return (
-    <section id="kits-section" className="py-12 px-4 md:px-12 bg-dark-bg text-cream">
-      
+    <section id="kits-section" className="py-12 px-4 md:px-12 text-cream relative">
+
       {/* Header Framework Section Blocks */}
-      <div className="section-header-wrap">
-        <span className="section-header-tag">
-          ✦ VEDIC RITUAL BOXES ✦
-        </span>
-        <h2 className="section-header-title">
-          Sacred Puja Kits
-        </h2>
-        <p className="section-header-description">
-          Eliminate the stress of sourcing ingredients. Our custom-curated all-in-one ritual boxes include verified pure, scripturally matched items prepared by hand.
-        </p>
+      <div className="section-header-wrap relative">
+          {/* Glow */}
+  <div
+    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+  >
+    <div
+      className="w-[700px] h-[300px]
+      rounded-full
+       bg-saffron/9
+      blur-[120px]"
+    />
+  </div>
+    {/* Content */}
+  <div className="relative z-10">
+    <span className="section-header-tag">
+      ✦ VEDIC RITUAL BOXES ✦
+         </span>
+
+    <h2 className="section-header-title">
+      Sacred Puja Kits
+      </h2>
+
+    <p className="section-header-description">
+      Eliminate the stress of sourcing ingredients. Our custom-curated all-in-one ritual boxes include verified pure, scripturally matched items prepared by hand.
+       </p>
+  </div>
       </div>
 
       {/* Dynamic Grid Rendering Stream */}

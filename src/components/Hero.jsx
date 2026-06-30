@@ -1,4 +1,3 @@
-import {useState,useEffect} from "react";
 import { Package, ShoppingCart, Truck, ShieldCheck, RotateCcw } from "lucide-react";
 
 export default function Hero() {
@@ -7,9 +6,11 @@ export default function Hero() {
         <section className="relative min-h-screen flex
         items-center justify-center overflow-hidden
         bg-radial-gradient from-gold/10 via-saffron/5 to-transparent pt-20 mb-10">
-                  
+      <div className="absolute top-0 left-1/4 w-[700px] h-[700px] rounded-full bg-saffron/6 filter blur-[150px] pointer-events-none mix-blend-screen" />
+      <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] rounded-full bg-gold/6 filter blur-[130px] pointer-events-none mix-blend-screen" />
+
       {/* Rotating SVG Sudarshana Chakra */}
-``<svg 
+<svg 
   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] sm:w-[500px] md:w-[750px]
   h-[250px] sm:h-[500px] md:h-[750px] opacity-[0.06] animate-spin-chakra z-0 pointer-events-none animate-[spin-chakra_25s_linear_infinite]" 
   viewBox="0 0 500 500" 
