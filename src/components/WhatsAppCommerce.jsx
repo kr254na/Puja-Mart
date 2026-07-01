@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { MessageSquare, Upload, FileText, X, Send, Check } from 'lucide-react';
+import { useContext } from 'react';
+import ToastContext from '../context/ToastContext';
 
-export default function WhatsappCommerce({triggerToast}) {
+export default function WhatsappCommerce() {
   const [isOpen, setIsOpen] = useState(false); //WhatsApp Modal
   const [uploadedFile, setUploadedFile] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
   const [textQuery, setTextQuery] = useState('');
   const [dragActive, setDragActive] = useState(false);
-
+  const {triggerToast} = useContext(ToastContext);
   // File Upload handling
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {

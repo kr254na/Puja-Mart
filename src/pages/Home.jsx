@@ -7,7 +7,7 @@ import ReviewSystem from "../components/ReviewSystem";
 import Collections from "../components/Collections";
 import Kits from "../components/Kits";
 import FeaturedProducts from "../components/FeaturedProducts";
-import OnlineTemple from "../components/OnlineTemple";
+import OnlineTemple from "./OnlineTemple";
 
 export default function Home({ triggerToast }) {
   const [particles, setParticles] = useState([]);
@@ -61,7 +61,7 @@ export default function Home({ triggerToast }) {
     <FeaturedProducts/>
       <BlogSystem isHomePage={true} />
       <ReviewSystem isHomePage={true} />
-      <WhatsAppCommerce triggerToast={triggerToast} />
+      <WhatsAppCommerce  />
     </div>
   );
 }
