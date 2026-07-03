@@ -78,14 +78,16 @@ export default function Navbar(){
               onClick={() => handleSuggestionClick(p)}
               className="flex items-center gap-2 p-2 hover:bg-saffron/10 rounded cursor-pointer transition"
             >
-              <span className="text-xl">{p.emoji}</span>
+              <span className="text-xl"><img src={p.image} className="w-10 h-10 rounded" /></span>
               <div className="flex-1 min-w-0">
                 <div className="text-xs md:text-sm font-semibold truncate">
-                  {p.name}
+                  {p.nameEn}
                 </div>
-                <div className="text-[10px] text-gold-bright font-cinzel">
-                  ₹{p.price}
-                </div>
+                {p.price && 
+                  <div className="text-[10px] text-gold-bright font-cinzel">
+                    ₹{p.price}
+                  </div>
+                }
               </div>
             </div>
           ))}
@@ -121,7 +123,7 @@ export default function Navbar(){
           <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/">Home</Link></li>
           <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/products">Products</Link></li>
           <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/kits">Kits</Link></li>
-          <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/contact">Contact</Link></li>
+          <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/about">About Us</Link></li>
         </ul>
 
         {/* Actions */}
@@ -177,9 +179,9 @@ export default function Navbar(){
           
           <ul className="w-full text-center flex flex-col gap-5 font-cormorant text-xl text-cream">
             <li onClick={() => setMobileMenuOpen(false)} className="hover:text-gold-bright py-1"><Link to="/">Home</Link></li>
-            <li onClick={() => setMobileMenuOpen(false)} className="hover:text-gold-bright py-1"><Link to="/about">About</Link></li>
             <li onClick={() => setMobileMenuOpen(false)} className="hover:text-gold-bright py-1"><Link to="/products">Products</Link></li>
-            <li onClick={() => setMobileMenuOpen(false)} className="hover:text-gold-bright py-1"><Link to="/contact">Contact</Link></li>
+            <li onClick={() => setMobileMenuOpen(false)} className="hover:text-gold-bright py-1"><Link to="/kits">Kits</Link></li>
+            <li onClick={() => setMobileMenuOpen(false)} className="hover:text-gold-bright py-1"><Link to="/about">About Us</Link></li>
           </ul>
 
           {/* Mobile Quick Actions (Wishlist & Profile for <= sm screen sizes) */}

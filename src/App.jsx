@@ -7,6 +7,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import { useEffect, useState } from "react";
+import Kits from "./pages/Kits";
+import About from "./pages/About";
 export default function App() {
   const [particles, setParticles] = useState([]);
 
@@ -53,6 +55,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/kits" element={<Kits />} />
+          <Route path="/about" element={<About/>}/>
         </Routes>
         <Footer />
         <Toast message={toast.toastMessage} />

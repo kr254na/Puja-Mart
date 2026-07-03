@@ -1,4 +1,4 @@
-import { useState, useMemo, useContext, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { dummyProducts } from '../data/productData';
 import ProductCard from '../components/ProductCard';
 import FilterDrawer from '../components/FilterDrawer';
@@ -65,9 +65,9 @@ export default function Products() {
 
         // 4. Mathematical Sort Map Ordering Matrix
         result.sort((a, b) => {
-            if (activeSort === 'price-low') return a.price - b.price;
-            if (activeSort === 'price-high') return b.price - a.price;
-            if (activeSort === 'rating') return b.rating - a.rating;
+            if (activeSort === 'price-low') return (a.price||0) - (b.price||0);
+            if (activeSort === 'price-high') return (b.price||0) - (a.price||0);
+            if (activeSort === 'rating') return (b.rating||0) - (a.rating||0);
             return 0;
         });
 

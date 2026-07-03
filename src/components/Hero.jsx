@@ -1,7 +1,7 @@
 import { Package, ShoppingCart, Truck, ShieldCheck, RotateCcw } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 export default function Hero() {
-  
+  const navigate = useNavigate();
     return(
         <section className="relative min-h-screen flex
         items-center justify-center overflow-hidden
@@ -102,13 +102,15 @@ export default function Hero() {
           <button className="px-8 py-3 bg-gradient-to-r from-gold-bright to-saffron 
           text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(212,160,23,0.4)] 
           transition hover:scale-105 flex items-center justify-center gap-2 group 
-          font-cinzel text-sm sm:text-base animate-fade-in-up">
+          font-cinzel text-sm sm:text-base animate-fade-in-up cursor-pointer"
+          onClick={() => navigate('/products')}>
              <span className="text-xl"><ShoppingCart size={24}/></span> Start Shopping
           </button>
 
           <button className="px-8 py-3 bg-transparent border border-gold/40 
           text-gold font-bold rounded-full hover:bg-gold/10 transition hover:scale-105
-          flex items-center justify-center gap-2 group font-cinzel text-sm sm:text-base">
+          flex items-center justify-center gap-2 group font-cinzel text-sm sm:text-base cursor-pointer"
+         onClick={() => navigate('/kits')}>
             <span className="text-xl"><Package size={24}/></span> View Kits
           </button>
         </div>
