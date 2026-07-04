@@ -1,13 +1,14 @@
 import { Eye, MessageSquare } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductCard({ product }) {
   
+  const navigate = useNavigate();
   const hasPrice = product.price !== undefined && product.price !== null;
 
   const handleWhatsAppEnquiry = (e) => {
     e.stopPropagation(); 
-    const priceText = hasPrice ? `listed at ₹${product.price}` : `(Price on request)`;
-    const message = `Hare Krishna! I am viewing your divine collection and would like to enquire about: ${product.nameEn} (${product.unit || 'Standard Pack'}) ${priceText}. Please confirm availability and shipping timelines.`;
+    const message = `Hare Krishna! I am viewing your divine collection and would like to enquire about: ${product.nameEn}. Please confirm availability and shipping timelines.`;
     
     window.open(`https://wa.me/919554054732?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -75,6 +76,7 @@ export default function ProductCard({ product }) {
           {/* Action 1: View Details */}
           <button
             className="btn-store-secondary"
+            onClick={() => navigate(`/products/${product.id}`)}
           >
             <Eye className="w-3.5 h-3.5 text-gold/70" />
             <span>Details</span>

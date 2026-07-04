@@ -2,7 +2,8 @@ import { useState, useMemo, useRef, useEffect } from 'react';
 import { dummyProducts } from '../data/productData';
 import ProductCard from '../components/ProductCard';
 import FilterDrawer from '../components/FilterDrawer';
-import { Search, SlidersHorizontal, ArrowUpDown, HelpCircle, ChevronLeft, ChevronRight, ChevronDown, Check } from 'lucide-react';
+import { Search, SlidersHorizontal, ArrowUpDown, HelpCircle, ChevronDown, Check } from 'lucide-react';
+import Pagination from '../components/Pagination';
 
 export default function Products() {
     // --- Core UI/UX State Engines ---
@@ -12,6 +13,7 @@ export default function Products() {
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
     const [selectedPriceRange, setSelectedPriceRange] = useState('all');
     const [isSortOpen, setIsSortOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
     const sortDropdownRef = useRef(null);
 
     useEffect(() => {
@@ -23,6 +25,10 @@ export default function Products() {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentPage]);
 
     // Unified fallback list mapping your premium inventory layers
     const catalogueProducts = useMemo(() => {
@@ -75,11 +81,11 @@ export default function Products() {
     }, [catalogueProducts, searchQuery, activeCategory, selectedPriceRange, activeSort]);
 
     return (
-        <div className="w-full min-h-screen bg-gradient-primary text-cream pt-[72px] sm:pt-[88px] pb-20 px-4 sm:px-8 md:px-16 lg:px-24 ">
+        <div className="page-container-listing">
             <div className="max-w-[1920px] mx-auto space-y-8">
 
                 {/* COMPACT MAIN UTILITY CONTROL STRIP ROW */}
-                <div className="sticky top-[72px] sm:top-[88px] z-30 bg-[#1A0800]/95 backdrop-blur-md py-4 -mx-4 px-4 sm:-mx-8 sm:px-8 md:-mx-16 md:px-16 lg:-mx-24 lg:px-24 border-b border-gold/10 transition-all duration-300">
+                <div className="sticky-control-strip">
                     <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-[1920px] mx-auto">
                         {/* Quick Real-Time Action Text Search Bar Input */}
                         <div className="relative flex-1 w-full">
@@ -89,7 +95,7 @@ export default function Products() {
                                 placeholder="Search catalog by item name or item type..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="truncate w-full bg-white/[0.02] border border-gold/15 rounded-sm pl-12 pr-4 py-3 font-cinzel text-xs tracking-wider focus:outline-none focus:border-gold/30 text-cream"
+                                className="input-sacred-search"
                             />
                         </div>
 
@@ -181,31 +187,11 @@ export default function Products() {
                 )}
 
                 {/* PAGINATION NAVIGATION ACTIONS BLOCK */}
-                <div className="flex items-center justify-center gap-2 pt-16">
-                    <button className="flex items-center justify-center w-10 h-10 border border-gold/20 hover:border-gold/60 rounded-xs text-cream/40 hover:text-gold-bright transition cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed">
-                        <ChevronLeft className="w-4 h-4" />
-                    </button>
-                    
-                    <button className="w-10 h-10 border border-gold bg-gold/10 text-gold-bright font-cinzel text-xs font-bold rounded-xs shadow-[0_0_15px_rgba(212,175,55,0.15)] transition cursor-pointer">
-                        1
-                    </button>
-                    <button className="w-10 h-10 border border-gold/15 bg-white/[0.01] hover:border-gold/40 text-cream/70 hover:text-cream font-cinzel text-xs rounded-xs transition cursor-pointer">
-                        2
-                    </button>
-                    <button className="w-10 h-10 border border-gold/15 bg-white/[0.01] hover:border-gold/40 text-cream/70 hover:text-cream font-cinzel text-xs rounded-xs transition cursor-pointer">
-                        3
-                    </button>
-                    
-                    <span className="text-cream/30 font-cinzel px-2 select-none">...</span>
-                    
-                    <button className="w-10 h-10 border border-gold/15 bg-white/[0.01] hover:border-gold/40 text-cream/70 hover:text-cream font-cinzel text-xs rounded-xs transition cursor-pointer">
-                        10
-                    </button>
-
-                    <button className="flex items-center justify-center w-10 h-10 border border-gold/20 hover:border-gold/60 rounded-xs text-cream/40 hover:text-gold-bright transition cursor-pointer">
-                        <ChevronRight className="w-4 h-4" />
-                    </button>
-                </div>
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={10}
+                    onPageChange={setCurrentPage}
+                />
             </div>
 
             {/* HIGH-END SLIDE-OUT FILTER SIDEBAR DRAWER OVERLAY MODAL */}

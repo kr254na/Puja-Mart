@@ -15,7 +15,7 @@ export default function About() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-primary text-cream pt-28 pb-20 px-4 sm:px-8 md:px-16 lg:px-24">
+    <div className="page-container">
       <div className="max-w-[1920px] mx-auto space-y-16">
         
         {/* SECTION 1: ABOUT THE SHOP / HERITAGE HERO */}
@@ -64,8 +64,8 @@ export default function About() {
 
           {/* Majestic Framed Display Image */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full max-w-md aspect-[4/5] rounded-sm border border-gold/15 p-2 bg-gradient-to-b from-white/[0.03] to-transparent shadow-2xl relative group">
-              <div className="w-full h-full relative overflow-hidden rounded-xs border border-white/5">
+            <div className="showcase-frame group mx-auto lg:mx-0">
+              <div className="showcase-frame-inner">
                 <img 
                   src="/shop.jpeg" 
                   alt="Altar Sacred Space" 

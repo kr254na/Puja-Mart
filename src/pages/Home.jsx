@@ -8,7 +8,7 @@ import Kits from "../components/Kits";
 import FeaturedProducts from "../components/FeaturedProducts";
 import OnlineTemple from "./OnlineTemple";
 
-export default function Home({ triggerToast }) {
+export default function Home() {
   return (
     <>
       {/* Main Home Sections */}

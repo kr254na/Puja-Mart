@@ -9,6 +9,8 @@ import Products from "./pages/Products";
 import { useEffect, useState } from "react";
 import Kits from "./pages/Kits";
 import About from "./pages/About";
+import ProductDetail from "./pages/ProductDetail";
+import ScrollToTop from "./components/ScrollToTop";
 export default function App() {
   const [particles, setParticles] = useState([]);
 
@@ -51,12 +53,14 @@ export default function App() {
             />
           ))}
         </div>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/kits" element={<Kits />} />
           <Route path="/about" element={<About/>}/>
+          <Route path="/products/:id" element={<ProductDetail/>}/>
         </Routes>
         <Footer />
         <Toast message={toast.toastMessage} />
