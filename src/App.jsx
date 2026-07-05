@@ -11,6 +11,10 @@ import Kits from "./pages/Kits";
 import About from "./pages/About";
 import ProductDetail from "./pages/ProductDetail";
 import ScrollToTop from "./components/ScrollToTop";
+import KitDetail from "./pages/KitDetail";
+import Reviews from "./pages/Reviews";
+import Blogs from "./pages/Blogs";
+
 export default function App() {
   const [particles, setParticles] = useState([]);
 
@@ -61,6 +65,9 @@ export default function App() {
           <Route path="/kits" element={<Kits />} />
           <Route path="/about" element={<About/>}/>
           <Route path="/products/:id" element={<ProductDetail/>}/>
+          <Route path="/kits/:id" element={<KitDetail />} />
+          <Route path="/reviews" element={<Reviews/>}/>
+          <Route path="/blogs" element={<Blogs/>}/>
         </Routes>
         <Footer />
         <Toast message={toast.toastMessage} />

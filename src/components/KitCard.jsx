@@ -1,7 +1,10 @@
 import { ShoppingBag, Eye } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function KitCard({ kit }) {
   
+  const navigate = useNavigate();
+
   // Fires WhatsApp API query with pre-filled structural order text
   const handleWhatsAppOrder = (e) => {
     e.stopPropagation(); // Prevents triggering card click event
@@ -72,6 +75,7 @@ export default function KitCard({ kit }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              navigate(`/kits/${kit.id}`);
             }}
             className="btn-store-secondary"
           >

@@ -5,7 +5,6 @@ import {
     Sparkles, ShoppingCart
 } from 'lucide-react';
 import { dummyProducts } from '../data/productData';
-import { premiumKits } from '../data/kitsData';
 import ToastContext from '../context/ToastContext';
 import ProductGallery from '../components/ProductGallery';
 
@@ -16,12 +15,10 @@ export default function ProductDetail() {
     const [isWishlisted, setIsWishlisted] = useState(false);
 
     const item = useMemo(() => {
-        // Check both standard individual products and curated festive kits
+
         const matchedProduct = dummyProducts?.find(p => p.id === id);
         if (matchedProduct) return { ...matchedProduct, type: 'product' };
 
-        const matchedKit = premiumKits?.find(k => k.id === id);
-        if (matchedKit) return { ...matchedKit, type: 'kit' };
 
         // Strict high-quality local fallback for robust sandbox preview
         return {
@@ -159,7 +156,7 @@ export default function ProductDetail() {
 
                         {/* Narrative Brief */}
                         <p className="font-cormorant text-sm md:text-base text-cream/70 italic leading-relaxed">
-                            {item.desc}
+                            {item.description}
                         </p>
 
 

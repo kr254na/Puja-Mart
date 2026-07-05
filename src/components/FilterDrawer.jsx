@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { SlidersHorizontal, X, Check } from 'lucide-react';
 
 export default function FilterDrawer({
-    isOpen,
     onClose,
     categories,
     activeCategory,
