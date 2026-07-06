@@ -154,53 +154,53 @@ export default function About() {
           </div>
 
           {/* Interactive Glassmorphic Inquiry Form (7 Columns) */}
-          <form onSubmit={handleSubmit} className="lg:col-span-7 border border-gold/15 bg-gradient-to-br from-white/[0.03] to-transparent p-6 md:p-8 rounded-sm backdrop-blur-xl space-y-4">
-            <h3 className="font-cinzel text-xs font-bold tracking-widest text-gold-bright uppercase flex items-center gap-2 mb-2">
+          <form onSubmit={handleSubmit} className="lg:col-span-7 form-field-card">
+            <h3 className="content-header-title text-sm">
               <MessageSquare className="w-4 h-4" /> Send Direct Inquiry
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="font-cinzel text-[10px] tracking-wider text-cream/50 block uppercase">Your Full Name</label>
+                <label className="form-field-title">Your Full Name</label>
                 <input 
                   type="text" 
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full bg-black/40 border border-white/5 focus:border-gold/30 rounded-sm p-3 font-cinzel text-xs tracking-wide text-cream focus:outline-none transition" 
+                  className="form-field-input" 
                 />
               </div>
               <div className="space-y-1">
-                <label className="font-cinzel text-[10px] tracking-wider text-cream/50 block uppercase">Contact Number</label>
+                <label className="form-field-title">Contact Number</label>
                 <input 
                   type="tel" 
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full bg-black/40 border border-white/5 focus:border-gold/30 rounded-sm p-3 font-cinzel text-xs tracking-wide text-cream focus:outline-none transition" 
+                  className="form-field-input" 
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="font-cinzel text-[10px] tracking-wider text-cream/50 block uppercase">Email Address</label>
+              <label className="form-field-title">Email Address</label>
               <input 
                 type="email" 
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full bg-black/40 border border-white/5 focus:border-gold/30 rounded-sm p-3 font-cinzel text-xs tracking-wide text-cream focus:outline-none transition" 
+                className="form-field-input" 
               />
             </div>
 
             <div className="space-y-1">
-              <label className="font-cinzel text-[10px] tracking-wider text-cream/50 block uppercase">Your Message / Custom Requirement</label>
+              <label className="form-field-title">Your Message / Custom Requirement</label>
               <textarea 
                 rows={4}
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
-                className="w-full bg-black/40 border border-white/5 focus:border-gold/30 rounded-sm p-3 font-cinzel text-xs tracking-wide text-cream focus:outline-none transition resize-none" 
+                className="form-field-input resize-none" 
               />
             </div>
 

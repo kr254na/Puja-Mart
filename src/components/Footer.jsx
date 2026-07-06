@@ -158,8 +158,7 @@ border-b border-gold/10 pb-2 flex items-center gap-2">
   <HelpingHand className="h-4 w-4 text-gold-bright" />
   Services
 </h3><ul className="flex flex-col gap-2 text-sm text-cream/70 font-cormorant">
-              <li className="hover:text-gold-bright transition"><Link to="/track-order">Track Order</Link></li>
-              <li className="hover:text-gold-bright transition"><Link to="/shipping-policy">Shipping Policy</Link></li>
+             <li className="hover:text-gold-bright transition"><Link to="/shipping-policy">Shipping Policy</Link></li>
               <li className="hover:text-gold-bright transition"><Link to="/return-policy">Return Policy</Link></li>
               <li className="hover:text-gold-bright transition"><Link to="/refund-policy">Refund Policy</Link></li>
               <li className="hover:text-gold-bright transition"><Link to="/faq">FAQ</Link></li>

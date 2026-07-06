@@ -123,7 +123,7 @@ export default function Navbar(){
           <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/">Home</Link></li>
           <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/products">Products</Link></li>
           <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/kits">Kits</Link></li>
-          <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/about">About Us</Link></li>
+          <li className="hover:text-gold-bright cursor-pointer hover:underline underline-offset-4 decoration-saffron transition"><Link to="/about">About</Link></li>
         </ul>
 
         {/* Actions */}

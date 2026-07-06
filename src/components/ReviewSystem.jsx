@@ -3,7 +3,7 @@ import { defaultReviews } from '../data/reviewData';
 import { ArrowRight, Star, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function ReviewSystem({ isHomePage = false }) {
+export default function ReviewSystem({ isHomePage = false, renderForm }) {
   const [selectedReview, setSelectedReview] = useState(null);
 
   const displayedReviews = isHomePage ? defaultReviews.slice(0, 3) : defaultReviews;
@@ -22,82 +22,139 @@ export default function ReviewSystem({ isHomePage = false }) {
       
       {/* Header */}
       <div className="section-header-wrap relative">
-                  {/* Glow */}
-  <div
-    className="absolute inset-0 flex items-center justify-center pointer-events-none"
-  >
-    <div
-      className="w-[700px] h-[300px]
-      rounded-full
-       bg-saffron/9
-      blur-[120px]"
-    />
-  </div>
-  <div className='relative z-10'>
-        <span className="section-header-tag">
-          ✦ DEVOTEE TESTIMONIALS ✦
-        </span>
-        <h2 className="section-header-title">
-          {isHomePage ? "Words of Trust" : "The Devotee Ledger"}
-        </h2>
-        <p className='section-header-description'>
-          Read inspiring stories from devotees whose lives have been touched by our sacred offerings.
-        </p>
+        {/* Glow */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[700px] h-[300px] rounded-full bg-saffron/9 blur-[120px]" />
+        </div>
+        <div className='relative z-10'>
+          <span className="section-header-tag">
+            ✦ DEVOTEE TESTIMONIALS ✦
+          </span>
+          <h2 className="section-header-title">
+            {isHomePage ? "Words of Trust" : "The Devotee Ledger"}
+          </h2>
+          <p className='section-header-description'>
+            Read inspiring stories from devotees whose lives have been touched by our sacred offerings.
+          </p>
         </div>
       </div>
 
-      {/* Reviews Layout Grid with optimized lower heights */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-7xl mx-auto">
-        {displayedReviews.map(review => (
-          <div
-            key={review.id}
-            onClick={() => setSelectedReview(review)}
-            className="card-glass-premium min-h-[190px] relative p-5 transition-all duration-300"
-          >
-            {/* Top Layout Block with large decorative quotes */}
-            <div className="relative pr-4">
-              <span className="absolute -top-3 -right-1 text-4xl font-serif text-gold/15 select-none leading-none">
-                ”
-              </span>
-              <p className="font-cormorant text-sm md:text-base italic text-cream/80 leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none">
-                {review.comment}
-              </p>
-            </div>
-
-            {/* Devotee Profile Cluster matching image_8f0ae3.png layout */}
-            <div className="flex items-center gap-3 mt-auto pt-3 border-t border-gold/5">
-              
-              {/* Compact Circular Initials Badge Container */}
-              <div className="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-dark-bg font-cinzel font-bold text-xs tracking-wider shrink-0 shadow-inner">
-                {getInitials(review.name)}
+      {isHomePage ? (
+        /* Home Page Layout: Simple 3-column Grid */
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-7xl mx-auto relative z-10">
+          {displayedReviews.map(review => (
+            <div
+              key={review.id}
+              onClick={() => setSelectedReview(review)}
+              className="card-glass-premium min-h-[190px] relative p-5 transition-all duration-300 group"
+            >
+              {/* Top Layout Block with large decorative quotes */}
+              <div className="relative pr-4">
+                <span className="absolute -top-3 -right-1 text-4xl font-serif text-gold/15 select-none leading-none">
+                  ”
+                </span>
+                <p className="font-cormorant text-sm md:text-base italic text-cream/80 leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none">
+                  {review.comment}
+                </p>
               </div>
 
-              {/* Text Profile Metadata Details */}
-              <div className="flex flex-col justify-center">
-                <h4 className="font-cinzel text-[11px] sm:text-xs font-bold text-cream tracking-wide leading-none">
-                  {review.name}
-                </h4>
-                
-                {/* Inline Stars & Location Row */}
-                <div className="flex items-center gap-1 mt-1 text-[10px] font-mono text-cream/40 whitespace-nowrap">
-                  <div className="flex gap-0.5 text-gold-bright">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`w-2.5 h-2.5 ${i < review.rating ? 'fill-gold-bright text-gold-bright' : 'text-cream/20'}`} 
-                      />
-                    ))}
+              {/* Devotee Profile Cluster matching image_8f0ae3.png layout */}
+              <div className="flex items-center gap-3 mt-auto pt-3 border-t border-gold/5">
+                {/* Compact Circular Initials Badge Container */}
+                <div className="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-dark-bg font-cinzel font-bold text-xs tracking-wider shrink-0 shadow-inner">
+                  {getInitials(review.name)}
+                </div>
+
+                {/* Text Profile Metadata Details */}
+                <div className="flex flex-col justify-center">
+                  <h4 className="font-cinzel text-[11px] sm:text-xs font-bold text-cream tracking-wide leading-none">
+                    {review.name}
+                  </h4>
+                  
+                  {/* Inline Stars & Location Row */}
+                  <div className="flex items-center gap-1 mt-1 text-[10px] font-mono text-cream/40 whitespace-nowrap">
+                    <div className="flex gap-0.5 text-gold-bright">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          className={`w-2.5 h-2.5 ${i < review.rating ? 'fill-gold-bright text-gold-bright' : 'text-cream/20'}`} 
+                        />
+                      ))}
+                    </div>
+                    <span>·</span>
+                    <span className="font-cormorant italic tracking-wide">{review.location}</span>
                   </div>
-                  <span>·</span>
-                  <span className="font-cormorant italic tracking-wide">{review.location}</span>
                 </div>
               </div>
-
             </div>
+          ))}
+        </div>
+      ) : (
+        /* Full Reviews Page Layout: Split columns (with renderForm container on the right if provided) */
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto relative z-10">
 
+          {/* Left Column: Sticky Submission Form */}
+          {renderForm && (
+            <div className="lg:col-span-4 lg:sticky lg:top-[120px] h-fit">
+              {renderForm()}
+            </div>
+          )}
+
+          {/* Right Column: Reviews Grid */}
+          <div className={renderForm ? "lg:col-span-8" : "lg:col-span-12"}>
+            {displayedReviews.length === 0 ? (
+              <div className="card-glass-premium text-center p-8">
+                <p className="font-cormorant text-cream/60 italic">No devotee logs found. Be the first to share your experience!</p>
+              </div>
+            ) : (
+              <div className={`grid grid-cols-1 ${renderForm ? 'sm:grid-cols-2' : 'sm:grid-cols-2 md:grid-cols-3'} gap-5`}>
+                {displayedReviews.map(review => (
+                  <div
+                    key={review.id}
+                    onClick={() => setSelectedReview(review)}
+                    className="card-glass-premium min-h-[190px] relative p-5 transition-all duration-300 group"
+                  >
+                    <div className="relative pr-4">
+                      <span className="absolute -top-3 -right-1 text-4xl font-serif text-gold/15 select-none leading-none">
+                        ”
+                      </span>
+                      <p className="font-cormorant text-sm md:text-base italic text-cream/80 leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none">
+                        {review.comment}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-3 mt-auto pt-3 border-t border-gold/5">
+                      <div className="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-dark-bg font-cinzel font-bold text-xs tracking-wider shrink-0 shadow-inner">
+                        {getInitials(review.name)}
+                      </div>
+
+                      <div className="flex flex-col justify-center">
+                        <h4 className="font-cinzel text-[11px] sm:text-xs font-bold text-cream tracking-wide leading-none">
+                          {review.name}
+                        </h4>
+                        
+                        <div className="flex items-center gap-1 mt-1 text-[10px] font-mono text-cream/40 whitespace-nowrap">
+                          <div className="flex gap-0.5 text-gold-bright">
+                            {[...Array(5)].map((_, i) => (
+                              <Star 
+                                key={i} 
+                                className={`w-2.5 h-2.5 ${i < review.rating ? 'fill-gold-bright text-gold-bright' : 'text-cream/20'}`} 
+                              />
+                            ))}
+                          </div>
+                          <span>·</span>
+                          <span className="font-cormorant italic tracking-wide">{review.location}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        ))}
-      </div>
+
+        </div>
+      )}
 
       {/* View All Button */}
       {isHomePage && (
@@ -122,33 +179,33 @@ export default function ReviewSystem({ isHomePage = false }) {
               <div className="font-cormorant text-base md:text-lg leading-relaxed text-cream/90 italic border-b border-gold/20 pb-5">
                 "{selectedReview.comment}"
               </div>
-                {/* Inline Stars & Location Row */}
-                <div className="flex items-center gap-3">
+              {/* Inline Stars & Location Row */}
+              <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-dark-bg font-cinzel font-bold text-xs tracking-wider shrink-0 shadow-inner">
-                {getInitials(selectedReview.name)}
-              </div>
+                  {getInitials(selectedReview.name)}
+                </div>
 
-              {/* Text Profile Metadata Details */}
-              <div className="flex flex-col justify-center">
-                <h4 className="font-cinzel text-[11px] sm:text-xs font-bold text-cream tracking-wide leading-none">
-                  {selectedReview.name}
-                </h4>
-                
-                {/* Inline Stars & Location Row */}
-                <div className="flex items-center gap-1 mt-1 text-[10px] font-mono text-cream/40 whitespace-nowrap">
-                  <div className="flex gap-0.5 text-gold-bright">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`w-2.5 h-2.5 ${i < selectedReview.rating ? 'fill-gold-bright text-gold-bright' : 'text-cream/20'}`} 
-                      />
-                    ))}
+                {/* Text Profile Metadata Details */}
+                <div className="flex flex-col justify-center">
+                  <h4 className="font-cinzel text-[11px] sm:text-xs font-bold text-cream tracking-wide leading-none">
+                    {selectedReview.name}
+                  </h4>
+                  
+                  {/* Inline Stars & Location Row */}
+                  <div className="flex items-center gap-1 mt-1 text-[10px] font-mono text-cream/40 whitespace-nowrap">
+                    <div className="flex gap-0.5 text-gold-bright">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          className={`w-2.5 h-2.5 ${i < selectedReview.rating ? 'fill-gold-bright text-gold-bright' : 'text-cream/20'}`} 
+                        />
+                      ))}
+                    </div>
+                    <span>·</span>
+                    <span className="font-cormorant italic tracking-wide">{selectedReview.location}</span>
                   </div>
-                  <span>·</span>
-                  <span className="font-cormorant italic tracking-wide">{selectedReview.location}</span>
                 </div>
               </div>
-                </div>
             </div>
           </div>
         </div>
