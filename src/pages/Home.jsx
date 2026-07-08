@@ -6,7 +6,7 @@ import ReviewSystem from "../components/ReviewSystem";
 import Collections from "../components/Collections";
 import Kits from "../components/Kits";
 import FeaturedProducts from "../components/FeaturedProducts";
-import OnlineTemple from "./OnlineTemple";
+import OnlineTemple from "../components/OnlineTemple";
 
 export default function Home() {
   return (

@@ -5,7 +5,7 @@ export default function Hero() {
     return(
         <section className="relative min-h-screen flex
         items-center justify-center overflow-hidden
-        bg-gradient-primary pt-20 mb-10">
+        bg-gradient-primary pt-20">
       <div className="absolute top-0 left-1/4 w-[700px] h-[700px] rounded-full bg-saffron/6 filter blur-[150px] pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] rounded-full bg-gold/6 filter blur-[130px] pointer-events-none mix-blend-screen" />
 

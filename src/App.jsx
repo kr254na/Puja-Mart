@@ -18,6 +18,8 @@ import ShippingPolicy from "./pages/ShippingPolicy";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import FAQ from "./pages/FAQ";
+import OnlineTemple from "./components/OnlineTemple";
+import TemplePage from "./pages/TemplePage";
 
 export default function App() {
   const [particles, setParticles] = useState([]);
@@ -67,15 +69,16 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/kits" element={<Kits />} />
-          <Route path="/about" element={<About/>}/>
-          <Route path="/products/:id" element={<ProductDetail/>}/>
+          <Route path="/about" element={<About />} />
+          <Route path="/online-temple" element={<TemplePage />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/kits/:id" element={<KitDetail />} />
-          <Route path="/reviews" element={<Reviews/>}/>
-          <Route path="/blogs" element={<Blogs/>}/>
-          <Route path="/shipping-policy" element={<ShippingPolicy/>}/>
-          <Route path="/return-policy" element={<ReturnPolicy/>}/>
-          <Route path="/refund-policy" element={<RefundPolicy/>}/>
-          <Route path="/faq" element={<FAQ/>}/>
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/shipping-policy" element={<ShippingPolicy />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
         <Footer />
         <Toast message={toast.toastMessage} />

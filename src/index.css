@@ -281,3 +281,60 @@ input[type="range"]::-webkit-slider-thumb:hover {
     transform: translateX(-50%);
   }
 }
+
+@keyframes fire-glow {
+          0%, 100% { transform: scale(1) rotate(-2deg); opacity: 0.95; filter: drop-shadow(0 0 5px #FF771C); }
+          50% { transform: scale(1.15) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 14px #FFD700); }
+        }
+        @keyframes smoke-flow {
+          0% { transform: translateX(0) scaleX(1) scaleY(1); opacity: 0; }
+          25% { opacity: 0.45; }
+          100% { transform: translateX(-160px) scaleY(1.8) scaleX(1.4); opacity: 0; filter: blur(3px); }
+        }
+        @keyframes petal-fall {
+          0% { transform: translateY(-10%) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(480px) rotate(360deg); opacity: 0; }
+        }
+        @keyframes bell-swing {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(-22deg); }
+          75% { transform: rotate(22deg); }
+        }
+        @keyframes water-fall {
+          0% { transform: translateY(0) scale(1); opacity: 0.9; }
+          80% { opacity: 0.9; }
+          100% { transform: translateY(330px) scale(0.6); opacity: 0; }
+        }
+        @keyframes plate-orbit {
+          0% { transform: translate(-50%, 0) translate(0, 32px); }
+          25% { transform: translate(-50%, 0) translate(35px, 12px); }
+          50% { transform: translate(-50%, 0) translate(0, -18px); }
+          75% { transform: translate(-50%, 0) translate(-35px, 12px); }
+          100% { transform: translate(-50%, 0) translate(0, 32px); }
+        }
+        @keyframes glow-orbit {
+          0% { transform: translate(0, 50px) scale(1); }
+          25% { transform: translate(50px, 15px) scale(1.08); }
+          50% { transform: translate(0, -25px) scale(1); }
+          75% { transform: translate(-50px, 15px) scale(1.08); }
+          100% { transform: translate(0, 50px) scale(1); }
+        }
+        .aarti-glow {
+          position: absolute;
+          width: 260px;
+          height: 260px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(255, 200, 50, 0.4) 0%, rgba(255, 120, 0, 0.12) 50%, transparent 70%);
+          mix-blend-mode: color-dodge;
+          pointer-events: none;
+          z-index: 25;
+          left: calc(50% - 130px);
+          top: calc(50% - 130px);
+        }
+        .animate-flicker { animation: fire-glow 0.8s ease-in-out infinite; }
+        .animate-smoke { animation: smoke-flow 4s ease-out infinite; }
+        .animate-petal { animation: petal-fall 4s linear forwards; }
+        .animate-bell { animation: bell-swing 0.6s ease-in-out; }
+        .animate-water-drop { animation: water-fall 0.8s linear forwards; }
+        .animate-plate-orbit { animation: plate-orbit 4.2s ease-in-out infinite; }
+        .animate-glow-orbit { animation: glow-orbit 4.2s ease-in-out infinite; }

@@ -20,7 +20,7 @@ const marqueeItems = [
 
 return (
     <div className="w-full bg-gradient-to-r from-saffron to-saffron-deep border-y
-    border-gold/30 py-3 overflow-hidden whitespace-nowrap z-20 relative my-3">
+    border-gold/30 py-3 overflow-hidden whitespace-nowrap z-20 relative mb-3">
       <div className="inline-flex animate-marquee">
         {marqueeItems.map((text, idx) => (
           <span 
