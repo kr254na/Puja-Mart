@@ -60,7 +60,7 @@ const ITEM_REGISTRY = {
         image: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=100&h=100&fit=crop',
         unit: 'Set'
     },
-    
+
     // Kit specific database items details
     'Pure Mysore Chandan': {
         id: 'prod-mysore-chandan',
@@ -165,7 +165,7 @@ const getItemDetails = (itemName) => {
     const cleanName = itemName.replace(/\s*\([^)]+\)$/, '').trim();
     const details = ITEM_REGISTRY[cleanName] || ITEM_REGISTRY[itemName];
     if (details) return details;
-    
+
     const match = itemName.match(/^(.*?)\s*\(([^)]+)\)$/);
     return {
         id: 'fallback-item',
@@ -229,24 +229,35 @@ export default function KitDetail() {
     const [customAdditions, setCustomAdditions] = useState({});
     const [productSearch, setProductSearch] = useState('');
     const [kitSearch, setKitSearch] = useState('');
-    
+
     // Pagination (Load More) state
     const [visibleCount, setVisibleCount] = useState(2);
 
     // Form inputs state
-    const [customerName, setCustomerName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [deliveryOption, setDeliveryOption] = useState('delivery'); // 'delivery' or 'pickup'
-    const [address, setAddress] = useState('');
-    const [wantsPandit, setWantsPandit] = useState(false);
-    const [customMessage, setCustomMessage] = useState('');
+    const initialFormState = {
+  customerName: '',
+  phone: '',
+  deliveryOption: 'delivery',
+  address: '',
+  wantsPandit: false,
+  customMessage: ''
+};
 
+const [formData, setFormData] = useState(initialFormState);
+
+const handleFormChange = (e) => {
+  const { name, value, type, checked } = e.target;
+  setFormData(prev => ({
+    ...prev,
+    [name]: type === 'checkbox' ? checked : value
+  }));
+};
     // Filter store products based on search input
     const filteredProducts = useMemo(() => {
         if (!productSearch.trim()) return dummyProducts;
         const query = productSearch.toLowerCase();
-        return dummyProducts.filter(p => 
-            p.nameEn?.toLowerCase().includes(query) || 
+        return dummyProducts.filter(p =>
+            p.nameEn?.toLowerCase().includes(query) ||
             p.nameHi?.toLowerCase().includes(query)
         );
     }, [productSearch]);
@@ -257,8 +268,8 @@ export default function KitDetail() {
         const query = kitSearch.toLowerCase();
         return itemsList.filter(name => {
             const details = getItemDetails(name);
-            return details.nameEn.toLowerCase().includes(query) || 
-                   details.nameHi.toLowerCase().includes(query);
+            return details.nameEn.toLowerCase().includes(query) ||
+                details.nameHi.toLowerCase().includes(query);
         });
     }, [itemsList, kitSearch]);
 
@@ -282,12 +293,7 @@ export default function KitDetail() {
         setCustomAdditions({});
         setProductSearch('');
         setKitSearch('');
-        setCustomerName('');
-        setPhone('');
-        setAddress('');
-        setWantsPandit(false);
-        setCustomMessage('');
-        setDeliveryOption('delivery');
+        setFormData(initialFormState);
     }, [itemsList]);
 
     // Check if EVERY selected item has a valid price
@@ -365,26 +371,25 @@ export default function KitDetail() {
         const priceText = allPricesAvailable ? `₹${totalPrice}` : 'Price on Request';
         text += `\n*Estimated Total Price:* ${priceText}\n`;
 
-        if (customerName.trim()) {
-            text += `\n*Customer Name:* ${customerName.trim()}`;
+        if (formData.customerName.trim()) {
+            text += `\n*Customer Name:* ${formData.customerName.trim()}`;
         }
 
-        if (phone.trim()) {
-            text += `\n*Phone Number:* ${phone.trim()}`;
-        }
-        
-        text += `\n*Delivery Option:* ${
-            deliveryOption === 'delivery' ? '📦 Home Delivery' : '🏪 In-Store Pickup'
-        }`;
-
-        if (deliveryOption === 'delivery' && address.trim()) {
-            text += `\n*Delivery Address:* ${address.trim()}`;
+        if (formData.phone.trim()) {
+            text += `\n*Phone Number:* ${formData.phone.trim()}`;
         }
 
-        text += `\n*Pandit Ji Service:* ${wantsPandit ? '🕉️ Requested' : '❌ Not Required'}`;
+        text += `\n*Delivery Option:* ${formData.deliveryOption === 'delivery' ? '📦 Home Delivery' : '🏪 In-Store Pickup'
+            }`;
 
-        if (customMessage.trim()) {
-            text += `\n*Custom Instructions/Message:* ${customMessage.trim()}`;
+        if (formData.deliveryOption === 'delivery' && formData.address.trim()) {
+            text += `\n*Delivery Address:* ${formData.address.trim()}`;
+        }
+
+        text += `\n*Pandit Ji Service:* ${formData.wantsPandit ? '🕉️ Requested' : '❌ Not Required'}`;
+
+        if (formData.customMessage.trim()) {
+            text += `\n*Custom Instructions/Message:* ${formData.customMessage.trim()}`;
         }
 
         const encodedText = encodeURIComponent(text);
@@ -418,12 +423,11 @@ export default function KitDetail() {
                         className="p-2.5 rounded-full bg-white/5 border border-gold/15 hover:border-gold/40 text-gold hover:bg-gold/10 hover:text-gold-bright hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer shadow-md z-20"
                         title={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
                     >
-                        <Heart 
-                            className={`w-5 h-5 transition-all duration-300 ${
-                                isWishlisted 
-                                    ? 'fill-gold text-gold scale-110' 
-                                    : 'text-gold hover:scale-105'
-                            }`} 
+                        <Heart
+                            className={`w-5 h-5 transition-all duration-300 ${isWishlisted
+                                ? 'fill-gold text-gold scale-110'
+                                : 'text-gold hover:scale-105'
+                                }`}
                         />
                     </button>
                 </div>
@@ -438,7 +442,7 @@ export default function KitDetail() {
 
                     {/* ================= LEFT SIDE: GALLERY, DEVOTEE FORM, & LIVE BILLING SUMMARY  ================= */}
                     <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24 order-2 lg:order-1">
-                        
+
                         {/* DESKTOP VIEW GALLERY (hidden on mobile, visible on desktop) */}
                         <div className="hidden lg:block">
                             <ProductGallery images={galleryImages} nameEn={item.nameEn} />
@@ -461,11 +465,12 @@ export default function KitDetail() {
                                         <label className="form-field-title">
                                             Devotee Name / Customer Name
                                         </label>
-                                        <input 
-                                            type="text" 
-                                            value={customerName}
-                                            onChange={(e) => setCustomerName(e.target.value)}
-                                            placeholder="Enter your name" 
+                                        <input
+                                            type="text"
+                                            name="customerName"
+                               value={formData.customerName}
+  onChange={handleFormChange}
+                                            placeholder="Enter your name"
                                             className="form-field-input"
                                         />
                                     </div>
@@ -475,11 +480,12 @@ export default function KitDetail() {
                                         <label className="form-field-title">
                                             Phone Number / Mobile
                                         </label>
-                                        <input 
-                                            type="tel" 
-                                            value={phone}
-                                            onChange={(e) => setPhone(e.target.value)}
-                                            placeholder="Enter 10-digit mobile number" 
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                             value={formData.phone}
+  onChange={handleFormChange}
+                                            placeholder="Enter 10-digit mobile number"
                                             className="form-field-input"
                                         />
                                     </div>
@@ -495,21 +501,20 @@ export default function KitDetail() {
                                             { id: 'delivery', title: 'Home Delivery', desc: 'At Your Doorstep' },
                                             { id: 'pickup', title: 'In-Store Pickup', desc: 'Collect From Shop' }
                                         ].map((opt) => (
-                                            <label 
-                                                key={opt.id} 
-                                                className={`flex flex-col justify-between p-3 rounded-sm border cursor-pointer select-none transition-all duration-300 ${
-                                                    deliveryOption === opt.id 
-                                                        ? 'form-field-radio-enabled' 
-                                                        : 'form-field-radio-disabled'
-                                                }`}
+                                            <label
+                                                key={opt.id}
+                                                className={`flex flex-col justify-between p-3 rounded-sm border cursor-pointer select-none transition-all duration-300 ${formData.deliveryOption === opt.id
+                                                    ? 'form-field-radio-enabled'
+                                                    : 'form-field-radio-disabled'
+                                                    }`}
                                             >
                                                 <div className="flex items-center gap-2 mb-1">
-                                                    <input 
-                                                        type="radio" 
-                                                        name="deliveryOption" 
+                                                    <input
+                                                        type="radio"
+                                                        name="deliveryOption"
                                                         value={opt.id}
-                                                        checked={deliveryOption === opt.id}
-                                                        onChange={() => setDeliveryOption(opt.id)}
+                                                        checked={formData.deliveryOption === opt.id}
+                                                        onChange={handleFormChange}
                                                         className="w-3.5 h-3.5 text-gold border-gold/30 bg-transparent focus:ring-gold/50 cursor-pointer accent-gold"
                                                     />
                                                     <span className="font-cinzel text-[10px] font-bold text-cream tracking-wide">
@@ -525,16 +530,17 @@ export default function KitDetail() {
                                 </div>
 
                                 {/* Address - Asked ONLY in case of Home Delivery */}
-                                {deliveryOption === 'delivery' && (
+                                {formData.deliveryOption === 'delivery' && (
                                     <div className="space-y-1 animate-fade-in">
                                         <label className="form-field-title">
                                             Delivery Address
                                         </label>
-                                        <textarea 
-                                            value={address}
-                                            onChange={(e) => setAddress(e.target.value)}
+                                        <textarea
+                                            value={formData.address}
+                                            name="address"
+                                            onChange={handleFormChange}
                                             rows={2}
-                                            placeholder="Enter full address for delivery" 
+                                            placeholder="Enter full address for delivery"
                                             className="form-field-input resize-none"
                                         />
                                     </div>
@@ -543,10 +549,11 @@ export default function KitDetail() {
                                 {/* Request Pandit Service */}
                                 <div className="pt-2">
                                     <label className="flex items-center gap-3 p-3 rounded-sm border border-gold/20 bg-white/[0.01] hover:border-gold/40 hover:bg-gold/5 transition-all duration-300 cursor-pointer select-none">
-                                        <input 
-                                            type="checkbox" 
-                                            checked={wantsPandit}
-                                            onChange={() => setWantsPandit(!wantsPandit)}
+                                        <input
+                                            type="checkbox"
+                                            checked={formData.wantsPandit}
+                                            name="wantsPandit"
+                                            onChange={handleFormChange}
                                             className="form-field-checkbox"
                                         />
                                         <div className="flex flex-col leading-tight">
@@ -565,11 +572,12 @@ export default function KitDetail() {
                                     <label className="form-field-title">
                                         Custom Message / Ritual Instructions
                                     </label>
-                                    <textarea 
-                                        value={customMessage}
-                                        onChange={(e) => setCustomMessage(e.target.value)}
+                                    <textarea
+                                        value={formData.customMessage}
+                                        name="customMessage"
+                                        onChange={handleFormChange}
                                         rows={2}
-                                        placeholder="Any special customization requests, auspicious dates, or custom messages for deities..." 
+                                        placeholder="Any special customization requests, auspicious dates, or custom messages for deities..."
                                         className="form-field-input resize-none"
                                     />
                                 </div>
@@ -598,16 +606,16 @@ export default function KitDetail() {
                                                     <span className="font-mono text-gold/60 shrink-0 text-[10px] hidden xs:inline">
                                                         [{index + 1}]
                                                     </span>
-                                                    
+
                                                     {/* Photo */}
-                                                    <img 
-                                                        src={details.image} 
+                                                    <img
+                                                        src={details.image}
                                                         alt={details.nameEn}
                                                         className="w-7 h-7 sm:w-8 sm:h-8 object-cover rounded-xs border border-gold/15 shrink-0"
                                                     />
 
                                                     <div className="flex flex-col min-w-0 flex-1">
-                                                        <Link 
+                                                        <Link
                                                             to={`/products/${details.id}`}
                                                             className="font-cormorant text-cream hover:underline hover:text-gold-bright transition-colors font-semibold truncate leading-tight"
                                                             title="View product description (Opens in new tab)"
@@ -623,7 +631,7 @@ export default function KitDetail() {
                                                         )}
                                                     </div>
                                                 </div>
-                                                
+
                                                 {/* Qty, Unit, Price details */}
                                                 <div className="flex items-center gap-2 sm:gap-4 shrink-0 font-mono text-[10px] sm:text-[11px] text-right pl-1">
                                                     <span className="text-cream/70 whitespace-nowrap">
@@ -651,16 +659,16 @@ export default function KitDetail() {
                                                     <span className="font-mono text-gold/60 shrink-0 text-[10px] hidden xs:inline">
                                                         [{startIdx + index + 1}]
                                                     </span>
-                                                    
+
                                                     {/* Photo */}
-                                                    <img 
-                                                        src={prodImage} 
+                                                    <img
+                                                        src={prodImage}
                                                         alt={val.name}
                                                         className="w-7 h-7 sm:w-8 sm:h-8 object-cover rounded-xs border border-gold/15 shrink-0"
                                                     />
 
                                                     <div className="flex flex-col min-w-0 flex-1">
-                                                        <Link 
+                                                        <Link
                                                             to={`/products/${id}`}
                                                             className="font-cormorant text-cream font-semibold truncate hover:underline hover:text-gold-bright transition-colors leading-tight"
                                                             title="View product description (Opens in new tab)"
@@ -676,7 +684,7 @@ export default function KitDetail() {
                                                         )}
                                                     </div>
                                                 </div>
-                                                
+
                                                 {/* Qty, Unit, Price details */}
                                                 <div className="flex items-center gap-2 sm:gap-4 shrink-0 font-mono text-[10px] sm:text-[11px] text-right pl-1">
                                                     <span className="text-cream/70 whitespace-nowrap">
@@ -736,7 +744,7 @@ export default function KitDetail() {
                         <div className="flex items-baseline gap-4 py-3 border-y border-white/5">
                             {item.price !== undefined && item.price !== null ? (
                                 <>
-                                   <p className='italic font-cormorant'> Starting from </p>
+                                    <p className='italic font-cormorant'> Starting from </p>
                                     <span className="badge-price-tag">
                                         ₹{item.price}
                                     </span>
@@ -776,18 +784,18 @@ export default function KitDetail() {
                                             Configure quantities, toggles and product description links.
                                         </p>
                                     </div>
-                                    
+
                                     {/* Search Kit Items Input */}
                                     <div className="relative w-full sm:w-60">
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             value={kitSearch}
                                             onChange={(e) => setKitSearch(e.target.value)}
-                                            placeholder="Search kit items..." 
+                                            placeholder="Search kit items..."
                                             className="form-field-input h-7"
                                         />
                                         {kitSearch && (
-                                            <button 
+                                            <button
                                                 onClick={() => setKitSearch('')}
                                                 className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gold hover:text-gold-bright font-sans text-xs cursor-pointer"
                                             >
@@ -796,23 +804,22 @@ export default function KitDetail() {
                                         )}
                                     </div>
                                 </div>
-                                
+
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar pt-1">
                                     {filteredKitItems.length > 0 ? (
                                         filteredKitItems.map((itemName, index) => {
                                             const selection = selections[itemName] || { selected: true, quantity: 1 };
                                             const details = getItemDetails(itemName);
                                             return (
-                                                <div 
+                                                <div
                                                     key={index}
-                                                    className={`flex flex-col justify-between p-3 rounded-sm border transition-all duration-300 ${
-                                                        selection.selected 
-                                                            ? 'border-gold/30 bg-gold/5' 
-                                                            : 'border-white/5 bg-white/[0.01] opacity-40'
-                                                    }`}
+                                                    className={`flex flex-col justify-between p-3 rounded-sm border transition-all duration-300 ${selection.selected
+                                                        ? 'border-gold/30 bg-gold/5'
+                                                        : 'border-white/5 bg-white/[0.01] opacity-40'
+                                                        }`}
                                                 >
                                                     <div className="flex items-start gap-2.5 min-w-0 flex-1">
-                                                        <input 
+                                                        <input
                                                             type="checkbox"
                                                             checked={selection.selected}
                                                             onChange={() => {
@@ -827,17 +834,17 @@ export default function KitDetail() {
                                                             className="form-field-checkbox w-3 h-3"
                                                             id={`kit-chk-${index}`}
                                                         />
-                                                        
+
                                                         {/* Product Photo */}
-                                                        <img 
-                                                            src={details.image} 
+                                                        <img
+                                                            src={details.image}
                                                             alt={details.nameEn}
                                                             className="w-9 h-9 object-cover rounded-xs border border-gold/15 shrink-0"
                                                         />
 
                                                         <div className="flex flex-col min-w-0 flex-1 leading-tight">
-                                                            <Link 
-                                                                to={`/products/${details.id}`} 
+                                                            <Link
+                                                                to={`/products/${details.id}`}
                                                                 className="font-cormorant text-xs text-cream hover:underline hover:text-gold-bright transition-colors truncate font-semibold"
                                                                 title="View product description (Opens in new tab)"
                                                                 target="_blank"
@@ -860,7 +867,7 @@ export default function KitDetail() {
                                                         <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5 select-none">
                                                             <div className="flex items-center bg-white/5 border border-gold/15 rounded-sm p-0.5">
                                                                 <button
-                                                                aria-label='Decrease quantity'
+                                                                    aria-label='Decrease quantity'
                                                                     type="button"
                                                                     onClick={() => {
                                                                         if (selection.quantity > 1) {
@@ -926,18 +933,18 @@ export default function KitDetail() {
                                         Search and add optional items directly from our store database.
                                     </p>
                                 </div>
-                                
+
                                 {/* Search Input Box */}
                                 <div className="relative w-full sm:w-64">
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         value={productSearch}
                                         onChange={(e) => setProductSearch(e.target.value)}
-                                        placeholder="Search store items..." 
+                                        placeholder="Search store items..."
                                         className="form-field-input h-7"
                                     />
                                     {productSearch && (
-                                        <button 
+                                        <button
                                             onClick={() => setProductSearch('')}
                                             className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gold hover:text-gold-bright font-sans text-xs cursor-pointer"
                                         >
@@ -946,7 +953,7 @@ export default function KitDetail() {
                                     )}
                                 </div>
                             </div>
-                            
+
                             <div className="border border-gold/15 bg-white/[0.01] rounded-sm overflow-hidden">
                                 <div className="max-h-[300px] overflow-y-auto pr-2 custom-scrollbar overflow-x-auto">
                                     <table className="w-full border-collapse">
@@ -966,11 +973,10 @@ export default function KitDetail() {
                                                     const added = customAdditions[prod.id]?.selected || false;
                                                     const qty = customAdditions[prod.id]?.quantity || 1;
                                                     return (
-                                                        <tr 
-                                                            key={prod.id} 
-                                                            className={`font-cormorant text-sm hover:bg-white/[0.02] transition-colors ${
-                                                                added ? 'bg-gold/[0.02]' : ''
-                                                            }`}
+                                                        <tr
+                                                            key={prod.id}
+                                                            className={`font-cormorant text-sm hover:bg-white/[0.02] transition-colors ${added ? 'bg-gold/[0.02]' : ''
+                                                                }`}
                                                         >
                                                             {/* Sequence Number */}
                                                             <td className="font-mono text-xs text-cream/40 py-3 px-3 select-none hidden xs:table-cell">
@@ -979,13 +985,13 @@ export default function KitDetail() {
                                                             {/* Product Names (English & Sanskrit/Hindi) + Photo */}
                                                             <td className="py-3 px-3">
                                                                 <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                                                                    <img 
-                                                                        src={prod.image} 
-                                                                        alt={prod.nameEn} 
+                                                                    <img
+                                                                        src={prod.image}
+                                                                        alt={prod.nameEn}
                                                                         className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-xs border border-gold/15 shrink-0"
                                                                     />
                                                                     <div className="flex flex-col min-w-0">
-                                                                        <Link 
+                                                                        <Link
                                                                             to={`/products/${prod.id}`}
                                                                             className="font-medium text-cream truncate hover:underline hover:text-gold-bright transition-colors text-xs sm:text-sm"
                                                                             title="View product description (Opens in new tab)"
@@ -1069,11 +1075,10 @@ export default function KitDetail() {
                                                                             }
                                                                         }));
                                                                     }}
-                                                                    className={`px-2 sm:px-3 py-1 rounded-sm text-[9px] sm:text-[10px] font-bold font-cinzel tracking-wider uppercase transition-colors cursor-pointer w-full ${
-                                                                        added 
-                                                                            ? 'bg-gold text-dark-bg border border-gold' 
-                                                                            : 'bg-transparent text-gold border border-gold/30 hover:bg-gold/10'
-                                                                    }`}
+                                                                    className={`px-2 sm:px-3 py-1 rounded-sm text-[9px] sm:text-[10px] font-bold font-cinzel tracking-wider uppercase transition-colors cursor-pointer w-full ${added
+                                                                        ? 'bg-gold text-dark-bg border border-gold'
+                                                                        : 'bg-transparent text-gold border border-gold/30 hover:bg-gold/10'
+                                                                        }`}
                                                                 >
                                                                     {added ? 'Added' : 'Add'}
                                                                 </button>

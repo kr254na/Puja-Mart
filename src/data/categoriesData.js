@@ -18,7 +18,7 @@ export const categories = [
     descHi: "बनारसी सिल्क, गोटा पट्टी और ज़री बॉर्डर से सजे हस्तनिर्मित सुंदर देव वस्त्र एवं पोशाकें।",
     countEn: "85+ Designs",
     countHi: "85+ डिज़ाइन्स",
-    bgImage: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=800"
+    bgImage: "https://lordkart.com/cdn/shop/files/lace-decorated-pink-laddu-gopal-designer-dresslordkart-9916232.jpg?v=1780603985&width=533"
   },
   {
     id: "god-idol",
@@ -29,7 +29,7 @@ export const categories = [
     descHi: "शुद्ध पीतल और अष्टधातु से निर्मित बारीक नक्काशीदार भव्य एवं प्राण-प्रतिष्ठित मूर्तियाँ।",
     countEn: "40+ Artworks",
     countHi: "40+ मूर्तियाँ उपलब्ध",
-    bgImage: "https://images.unsplash.com/photo-1602738328654-51ab2df639ff?auto=format&fit=crop&q=80&w=800"
+    bgImage: "https://budhshiv.com/cdn/shop/collections/superfine-lightweight-brass-idols-collection-548369.jpg?v=1742359534"
   },
   {
     id: "daily",
@@ -51,7 +51,7 @@ export const categories = [
     descHi: "विवाह संस्कार, यज्ञोपवीत एवं अन्य पवित्र पारिवारिक मांगलिक कार्यों की विशिष्ट सामग्री।",
     countEn: "8 Dedicated Sets",
     countHi: "8 विशिष्ट सेट",
-    bgImage: "https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?auto=format&fit=crop&q=80&w=800"
+    bgImage: "https://4.imimg.com/data4/WP/HF/MY-25897268/img-223048ganesh-puja-kit-2b-500x500.jpg"
   },
   {
     id: "antim",

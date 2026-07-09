@@ -70,6 +70,12 @@ export default function ProductCard({ product }) {
           </p>
         </div>
 
+                            <div className="absolute top-2 left-2">
+                      <span className="badge font-cinzel text-[8px] tracking-wider px-2 py-0.5 border border-gold/20 bg-dark-bg/85 text-gold-bright">
+                       Daily Use
+                      </span>
+                    </div>
+
         {/* Action Buttons Row */}
         <div className="grid grid-cols-2 gap-2 mt-2">
           

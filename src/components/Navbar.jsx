@@ -134,29 +134,37 @@ export default function Navbar(){
           </div>
 
           {/* Wishlist - Hidden on Mobile, shown in Drawer */}
-          <button className="hidden xs:block relative p-2 border border-gold/30 rounded-full hover:bg-gold/10 text-gold transition cursor-pointer" title="Wishlist">
+          <Link 
+            to="/wishlist"
+            className="hidden xs:block relative p-2 border border-gold/30 rounded-full hover:bg-gold/10 text-gold transition cursor-pointer"
+            title="Wishlist"
+          >
             <Heart className="w-4 h-4" />
             <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-maroon text-[9px] font-sans text-white rounded-full flex items-center justify-center border border-gold/40 animate-pulse">
               2
             </span>
-          </button>
+          </Link>
 
           {/* Cart - Essential, kept on mobile */}
-          <button className="relative p-1.5 sm:p-2 border border-gold/30 rounded-full bg-gold/10 hover:bg-gold/20 text-gold-bright transition cursor-pointer" title="Shopping Basket">
+          <Link 
+            to="/cart"
+            className="relative p-1.5 sm:p-2 border border-gold/30 rounded-full bg-gold/10 hover:bg-gold/20 text-gold-bright transition cursor-pointer"
+            title="Shopping Basket"
+          >
             <ShoppingCart className="w-4 h-4" />
             <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-saffron text-[8px] sm:text-[9px] font-sans text-white rounded-full flex items-center justify-center border border-gold/40 animate-pulse">
               5
             </span>
-          </button>
+          </Link>
 
           {/* Profile / Account Trigger - Hidden on Mobile, shown in Drawer */}
-          <button 
+          <Link 
+            to="/profile"
             className="hidden xs:block p-2 border border-gold/30 rounded-full hover:bg-gold/10 text-gold transition cursor-pointer"
             title="Profile"
-            onClick={() => alert("Profile feature coming soon!")}
           >
             <User className="w-4 h-4" />
-          </button>
+          </Link>
 
           {/* Mobile Menu Icon Toggle */}
           <button 
@@ -186,20 +194,22 @@ export default function Navbar(){
 
           {/* Mobile Quick Actions (Wishlist & Profile for <= sm screen sizes) */}
           <div className="flex gap-4 mt-6 pt-6 border-t border-gold/20 w-full max-w-sm justify-center xs:hidden">
-            <button 
+            <Link 
+              to="/wishlist"
               className="flex items-center gap-2 px-3 py-1.5 border border-gold/30 rounded-full hover:bg-gold/10 text-gold transition cursor-pointer"
-              onClick={() => { setMobileMenuOpen(false); alert("Wishlist feature coming soon!"); }}
+              onClick={() => setMobileMenuOpen(false)}
             >
               <Heart className="w-3.5 h-3.5" />
               <span className="text-xs font-sans text-cream">Wishlist (2)</span>
-            </button>
-            <button 
+            </Link>
+            <Link 
+              to="/profile"
               className="flex items-center gap-2 px-3 py-1.5 border border-gold/30 rounded-full hover:bg-gold/10 text-gold transition cursor-pointer"
-              onClick={() => { setMobileMenuOpen(false); alert("Profile feature coming soon!"); }}
+              onClick={() => setMobileMenuOpen(false)}
             >
               <User className="w-3.5 h-3.5" />
               <span className="text-xs font-sans text-cream">Profile</span>
-            </button>
+            </Link>
           </div>
         </div>
       )}

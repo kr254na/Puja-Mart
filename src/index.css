@@ -103,6 +103,14 @@
     @apply font-cinzel text-[10px] tracking-widest text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded-full border border-emerald-500/10 font-bold uppercase;
   }
 
+  .badge-status-success {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 font-cinzel text-[9px] tracking-wider uppercase font-bold;
+  }
+
+  .badge-status-warning {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-saffron/20 bg-saffron/10 text-saffron font-cinzel text-[9px] tracking-wider uppercase font-bold;
+  }
+
   .badge-price-tag{
     @apply font-cinzel text-2xl font-bold text-gold-bright;
   }

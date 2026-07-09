@@ -18,8 +18,10 @@ import ShippingPolicy from "./pages/ShippingPolicy";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import FAQ from "./pages/FAQ";
-import OnlineTemple from "./components/OnlineTemple";
 import TemplePage from "./pages/TemplePage";
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
+import Wishlist from "./pages/Wishlist";
 
 export default function App() {
   const [particles, setParticles] = useState([]);
@@ -79,6 +81,9 @@ export default function App() {
           <Route path="/return-policy" element={<ReturnPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
         </Routes>
         <Footer />
         <Toast message={toast.toastMessage} />

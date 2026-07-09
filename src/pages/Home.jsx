@@ -7,6 +7,7 @@ import Collections from "../components/Collections";
 import Kits from "../components/Kits";
 import FeaturedProducts from "../components/FeaturedProducts";
 import OnlineTemple from "../components/OnlineTemple";
+import FloatingMusicPlayer from "../components/FloatingMusicPlayer";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <BlogSystem isHomePage={true} />
       <ReviewSystem isHomePage={true} />
       <WhatsAppCommerce />
+      <FloatingMusicPlayer />
     </>
   );
 }
