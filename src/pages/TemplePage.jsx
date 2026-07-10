@@ -1089,7 +1089,7 @@ export default function TemplePage() {
           </div>
 
           {/* Row Segment 3: Complete Book a Pandit Ritual Service Form (Full Width) */}
-          <div className="border border-gold/15 bg-gradient-to-r from-[#110601] to-[#040100] p-6 rounded-sm shadow-2xl relative">
+          <div className="border border-gold/15 bg-gradient-to-r from-[#110601] to-[#040100] p-6 rounded-sm shadow-2xl relative overflow-hidden">
             
             <div className="absolute -right-24 -bottom-24 w-48 h-48 bg-saffron/5 rounded-full filter blur-xl pointer-events-none" />
 

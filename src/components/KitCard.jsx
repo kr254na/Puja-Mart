@@ -25,11 +25,10 @@ export default function KitCard({ kit }) {
         <img 
           src={kit.bgImage} 
           alt={kit.nameEn}
-          className="w-full h-full object-cover object-center group-hover:scale-105
+          className="w-full h-full object-cover object-top group-hover:scale-105
           transition-transform duration-700 filter brightness-[85%] contrast-[105%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent" />
-        
+     
         {/* Ribbon Tag Banner */}
         <span className="absolute top-3 left-3 px-2.5 py-0.5 font-cinzel text-[9px] tracking-widest
         uppercase bg-gold text-dark-bg font-bold rounded-xs shadow-md">
